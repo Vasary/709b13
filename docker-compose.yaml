@@ -17,7 +17,7 @@ services:
     ports:
       - 110:110
       - 143:143
-      - 125:125
+      - 125:25
     networks:
       - mailer-network
     command: /entrypoint.sh
