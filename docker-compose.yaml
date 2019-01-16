@@ -15,7 +15,7 @@ services:
     volumes:
       - ./var/dkim/keys:/etc/opendkim/keys
     ports:
-      - 25:25
+      - "25:25"
       - 110:110
       - 143:143
     networks:
