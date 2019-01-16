@@ -4,6 +4,7 @@ ARG domain
 ARG user
 ARG password
 
+## Install Postfix + Dovecot
 RUN echo mail > /etc/hostname
 
 RUN echo "127.0.0.1 localhost mail mail.${domain}" > /etc/hosts \
@@ -34,6 +35,24 @@ RUN postconf -e "myhostname = mail.${domain}" \
 ADD ./config/dovecot.conf /etc/dovecot/dovecot.conf
 
 RUN service postfix stop ; service dovecot stop
+
+## Install openDKIM
+
+RUN apt install -y opendkim opendkim-tools
+COPY ./config/opendkim.conf /etc/opendkim.conf
+
+RUN echo SOCKET="inet:12301@localhost" >> /etc/default/opendkim
+RUN mkdir /etc/opendkim \
+ && mkdir /etc/opendkim/keys
+
+COPY ./config/TrustedHosts /etc/opendkim/TrustedHosts
+COPY ./config/KeyTable /etc/opendkim/KeyTable
+COPY ./config/SigningTable /etc/opendkim/SigningTable
+
+RUN mkdir -p /etc/opendkim/keys/rucreditor.ru
+RUN cd /etc/opendkim/keys/rucreditor.ru \
+ && opendkim-genkey -s mail -d rucreditor.ru \
+ && chown opendkim:opendkim mail.private
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
