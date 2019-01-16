@@ -1,4 +1,4 @@
-version: '2.4'
+version: '2.2'
 
 services:
   mailer:
@@ -15,9 +15,9 @@ services:
     volumes:
       - ./var/dkim/keys:/etc/opendkim/keys
     ports:
-      - 25:25
       - 110:110
       - 143:143
+      - 125:125
     networks:
       - mailer-network
     command: /entrypoint.sh
