@@ -47,11 +47,9 @@ RUN mkdir /etc/opendkim \
 COPY ./config/dkim/TrustedHosts /etc/opendkim/TrustedHosts
 COPY ./config/dkim/KeyTable /etc/opendkim/KeyTable
 COPY ./config/dkim/SigningTable /etc/opendkim/SigningTable
+COPY ./scritps /scripts
 
-RUN mkdir -p /etc/opendkim/keys/rucreditor.ru
-RUN cd /etc/opendkim/keys/rucreditor.ru \
- && opendkim-genkey -s mail -d rucreditor.ru \
- && chown opendkim:opendkim mail.private
+RUN chmod +x -R /scripts
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
