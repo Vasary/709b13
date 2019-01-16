@@ -28,26 +28,25 @@ RUN useradd -m -d /home/${user} -s /bin/false -p ${password} ${user} \
  && echo "root: ${user}" >> /etc/aliases \
  && newaliases
 
-ADD ./config/main.cf /etc/postfix/main.cf
+ADD ./config/postfix/main.cf /etc/postfix/main.cf
 RUN postconf -e "myhostname = mail.${domain}" \
  && postconf -e "mydestination = mail.${domain}, ${domain}, localhost.localdomain, localhost"
 
-ADD ./config/dovecot.conf /etc/dovecot/dovecot.conf
+ADD ./config/dovecot/dovecot.conf /etc/dovecot/dovecot.conf
 
 RUN service postfix stop ; service dovecot stop
 
 ## Install openDKIM
-
 RUN apt install -y opendkim opendkim-tools
-COPY ./config/opendkim.conf /etc/opendkim.conf
+COPY ./config/dkim/opendkim.conf /etc/opendkim.conf
 
 RUN echo SOCKET="inet:12301@localhost" >> /etc/default/opendkim
 RUN mkdir /etc/opendkim \
  && mkdir /etc/opendkim/keys
 
-COPY ./config/TrustedHosts /etc/opendkim/TrustedHosts
-COPY ./config/KeyTable /etc/opendkim/KeyTable
-COPY ./config/SigningTable /etc/opendkim/SigningTable
+COPY ./config/dkim/TrustedHosts /etc/opendkim/TrustedHosts
+COPY ./config/dkim/KeyTable /etc/opendkim/KeyTable
+COPY ./config/dkim/SigningTable /etc/opendkim/SigningTable
 
 RUN mkdir -p /etc/opendkim/keys/rucreditor.ru
 RUN cd /etc/opendkim/keys/rucreditor.ru \
