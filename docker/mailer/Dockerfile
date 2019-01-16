@@ -47,7 +47,7 @@ RUN mkdir /etc/opendkim \
 COPY ./config/dkim/TrustedHosts /etc/opendkim/TrustedHosts
 COPY ./config/dkim/KeyTable /etc/opendkim/KeyTable
 COPY ./config/dkim/SigningTable /etc/opendkim/SigningTable
-COPY ./scritps /scripts
+COPY ./scripts /scripts
 
 RUN chmod +x -R /scripts
 
