@@ -15,7 +15,7 @@ Simple mail server for easiest mailing
 # sudo make start
 ```
 
-## Allowed
+## Ports
 * 25
 * 110
 * 143

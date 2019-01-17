@@ -4,6 +4,9 @@ build:
 	docker-compose build
 
 start:
+	docker-compose up
+
+detach:
 	docker-compose up -d
 
 stop:
