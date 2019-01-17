@@ -1,4 +1,4 @@
-smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
+#smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 biff = no
 append_dot_mydomain = no
 
@@ -12,12 +12,12 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 smtpd_tls_security_level = may
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = mail.example.com
+myhostname = mail.{domain}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
-mydestination = mail.example.com, example.com, localhost.localdomain, localhost
-relayhost =
+mydestination = mail.{domain}, {domain}, localhost.localdomain, localhost
+relayhost = *
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
@@ -34,3 +34,5 @@ milter_default_action = accept
 
 smtpd_milters       = inet:localhost:12301
 non_smtpd_milters   = inet:localhost:12301
+
+compatibility_level=2
