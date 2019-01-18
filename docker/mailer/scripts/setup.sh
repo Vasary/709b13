@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 cat << 'EOF'
-
 /***
  *     ______     ______     ______   __  __     ______
  *    /\  ___\   /\  ___\   /\__  _\ /\ \/\ \   /\  == \
@@ -75,5 +74,3 @@ do
         printf "${NC}[ ${RED}error ${NC}] Updating: ${i}\n"
     fi
 done
-
-echo -e "\n"

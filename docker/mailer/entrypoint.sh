@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 service rsyslog start
 
+echo -e "\n"
 /scripts/setup.sh
+echo -e "\n"
 /scripts/generate_opendkim_keys.sh
-/scripts/add_allias.sh no-reply abuse info news unsubscribe
+echo -e "\n"
+/scripts/add_allias.sh $ALIASES
 
 echo -e "\nApplying aliases list"
 newaliases

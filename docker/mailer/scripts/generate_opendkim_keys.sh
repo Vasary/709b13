@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 cat << 'EOF'
-
 /***
  *     ______     ______   ______     __   __     _____     __  __     __     __    __    
  *    /\  __ \   /\  == \ /\  ___\   /\ "-.\ \   /\  __-.  /\ \/ /    /\ \   /\ "-./  \   
@@ -24,7 +23,7 @@ else
     printf "${NC}[ ${RED}error ${NC}] Directories\n"
 fi
 
-echo -e "\nCheck keys for exists"
+echo -e "\nChecking keys for exists\n"
 
 if [[ -f /etc/opendkim/keys/${DOMAIN}/mail.private ]] && [[ -f /etc/opendkim/keys/${DOMAIN}/mail.txt ]]; then
     printf "${NC}[ ${GREEN}ok ${NC}] Keys already exists\n"
@@ -45,5 +44,3 @@ fi
 
 echo -e "\nZone record template:"
 cat /etc/opendkim/keys/${DOMAIN}/mail.txt
-
-echo -e "\n"
