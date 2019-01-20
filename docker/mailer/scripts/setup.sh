@@ -15,7 +15,9 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-echo -e "\nCurrent domain: ${DOMAIN}\n"
+echo -e "\nCurrent domain: ${DOMAIN}"
+echo -e "User: ${MAILER_USER}"
+echo -e "Password: ${MAILER_PASSWORD}\n"
 
 if [[ -f /var/spool/postfix/pid/master.pid ]]; then
     if rm /var/spool/postfix/pid/master.pid; then
@@ -74,3 +76,5 @@ do
         printf "${NC}[ ${RED}error ${NC}] Updating: ${i}\n"
     fi
 done
+
+echo -e "${MAILER_PASSWORD}\n${MAILER_PASSWORD}" | (passwd ${MAILER_USER})
