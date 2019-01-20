@@ -77,4 +77,5 @@ do
     fi
 done
 
+echo -e "\nUpdating user password\n"
 echo -e "${MAILER_PASSWORD}\n${MAILER_PASSWORD}" | (passwd ${MAILER_USER})
