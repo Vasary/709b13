@@ -1,3 +1,4 @@
+
 # Mail server  
   
 Simple mail server for easiest mailing.
@@ -13,10 +14,10 @@ Simple mail server for easiest mailing.
 #### Users and aliases  
 Add necessary user data with regexp rules. Each set of parameters with the new line.
 
-**Notice: The white spaces are the delimiter for parameters.**
+**Notice: The whitespaces are delimiter for parameters.**
 
-> *Example:*  *notification;1234567890;/^(.+)@domain.com$/i*
-> Explanation: user;password;expression
+> *Example:*  * notification			 1234567890		/^(.+)@domain.com$/i*  
+> Explanation: user						password			expression
 ```  
 # cp ./var/users.dist ./var/users  
 # vi ./var/users  
