@@ -7,14 +7,15 @@ NC='\033[0m'
 service rsyslog start
 
 echo -e "\n"
+
 /scripts/setup.sh
 echo -e "\n"
+
 /scripts/generate_opendkim_keys.sh
 echo -e "\n"
-/scripts/add_allias.sh $ALIASES
 
-echo -e "\nApplying aliases list"
-newaliases
+/scripts/spawn_users.sh
+echo -e "\n"
 
 if [[ -f /var/spool/postfix/pid/master.pid ]]; then
     if rm /var/spool/postfix/pid/master.pid; then

@@ -1,0 +1,2 @@
+unsubscribe     1234567890  /^(.+_[0-9]+_unsubscribe)@test.com$/i
+notification    1234567890  /^(.+)@test.com$/i

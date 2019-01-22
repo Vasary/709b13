@@ -9,7 +9,8 @@ services:
     build:
       context: ./docker/mailer
     volumes:
-      - ./var/dkim/keys:/etc/opendkim/keys
+      - ./var/opendkim/keys:/etc/opendkim/keys
+      - ./var/users:/etc/users
     ports:
       - "25:25"
       - 110:110

@@ -15,9 +15,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-echo -e "\nCurrent domain: ${DOMAIN}"
-echo -e "User: ${MAILER_USER}"
-echo -e "Password: ${MAILER_PASSWORD}\n"
+echo -e "\nCurrent domain: ${DOMAIN}\n"
 
 if [[ -f /var/spool/postfix/pid/master.pid ]]; then
     if rm /var/spool/postfix/pid/master.pid; then
@@ -45,16 +43,6 @@ else
     printf "${NC}[ ${RED}error ${NC}] Setup chown\n"
 fi
 
-if ! id -u $MAILER_USER > /dev/null 2>&1; then
-    if useradd -m -d /home/${MAILER_USER} -s /bin/false -p ${MAILER_PASSWORD} ${MAILER_USER}; then
-        printf "${NC}[ ${GREEN}ok ${NC}] Creating default user: ${MAILER_USER}\n"
-    else
-        printf "${NC}[ ${RED}error ${NC}] Creating default user: ${MAILER_USER}\n"
-    fi
-else
-    printf "${NC}[ ${GREEN}ok ${NC}] User already exists\n"
-fi
-
 if echo SOCKET="inet:12301@localhost" >> /etc/default/opendkim; then
     printf "${NC}[ ${GREEN}ok ${NC}] Setup openDKIM socket\n"
 else
@@ -76,6 +64,3 @@ do
         printf "${NC}[ ${RED}error ${NC}] Updating: ${i}\n"
     fi
 done
-
-echo -e "\nUpdating user password\n"
-echo -e "${MAILER_PASSWORD}\n${MAILER_PASSWORD}" | (passwd ${MAILER_USER})
