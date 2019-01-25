@@ -40,4 +40,6 @@ milter_default_action = accept
 smtpd_milters       = inet:localhost:12301
 non_smtpd_milters   = inet:localhost:12301
 
+local_recipient_maps =
+
 compatibility_level=2
