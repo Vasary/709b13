@@ -1,4 +1,4 @@
-#smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 biff = no
 append_dot_mydomain = no
 
@@ -15,10 +15,9 @@ smtp_tls_security_level = may
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 myhostname = mail.{domain}
 
-#alias_maps = hash:/etc/aliases
-
-alias_database = hash:/etc/aliases
 alias_maps = regexp:/etc/postfix/aliases
+
+virtual_alias_maps = regexp:/etc/postfix/virtual
 
 myorigin = /etc/mailname
 mydestination = mail.{domain}, {domain}, localhost.localdomain, localhost

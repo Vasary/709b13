@@ -23,7 +23,10 @@ RUN mkdir /etc/opendkim \
 COPY ./config/postfix/main.cf /etc/postfix/main.cf
 COPY ./config/postfix/mailname /etc/mailname
 COPY ./config/postfix/aliases /etc/postfix/aliases
+COPY ./config/postfix/virtual /etc/postfix/virtual
+
 COPY ./config/dovecot/dovecot.conf /etc/dovecot/dovecot.conf
+
 COPY ./config/dkim/conf/opendkim.conf /etc/opendkim.conf
 COPY ./config/dkim/tables/TrustedHosts /etc/opendkim/TrustedHosts
 COPY ./config/dkim/tables/KeyTable /etc/opendkim/KeyTable
